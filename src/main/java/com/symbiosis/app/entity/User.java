@@ -36,7 +36,7 @@ public class User extends Auditable implements UserDetails {
     private String password;
     @Column(name="email")
     private String email;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_fk"), inverseJoinColumns = @JoinColumn(name = "role_fk"))
     @JsonIgnore
     private List<Role> roles = new ArrayList<>();
