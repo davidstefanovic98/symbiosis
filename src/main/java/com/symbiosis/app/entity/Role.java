@@ -8,6 +8,7 @@ import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -28,7 +29,7 @@ public class Role extends Auditable implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return String.format("ROLE_%s", name);
+        return String.format("ROLE_%s", name.toUpperCase(Locale.ROOT));
     }
 
     @Override
