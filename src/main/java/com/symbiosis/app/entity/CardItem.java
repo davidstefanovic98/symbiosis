@@ -1,10 +1,7 @@
 package com.symbiosis.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -30,6 +27,7 @@ public class CardItem extends Auditable{
     private String description;
     @ManyToOne
     @JsonIgnore
+    @ToString.Exclude
     @JoinColumn(name = "card_fk", nullable = false)
     private Card card;
 
