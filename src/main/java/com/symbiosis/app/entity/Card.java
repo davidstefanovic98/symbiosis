@@ -30,6 +30,7 @@ public class Card extends Auditable{
     @ToString.Exclude
     private List<CardItem> cardItems;
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
