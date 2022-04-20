@@ -31,7 +31,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User findById(Integer userId) {
-        return userRepository.findById(userId).orElseThrow(() -> new NoSuchElementException("User not found."));
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException(
+                        "User with id " + userId + "not found.")
+                );
     }
 
     @Override
