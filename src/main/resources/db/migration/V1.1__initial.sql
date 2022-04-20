@@ -1,4 +1,4 @@
-create table board
+create table if not exists `board`
 (
     board_id           int auto_increment
         primary key,
@@ -9,7 +9,7 @@ create table board
     record_status      int          default 1
 );
 
-create table card
+create table if not exists `card`
 (
     card_id            int auto_increment
         primary key,
@@ -24,7 +24,7 @@ create table card
         foreign key (board_fk) references board (board_id)
 );
 
-create table label
+create table if not exists `label`
 (
     label_id           int auto_increment
         primary key,
@@ -35,7 +35,7 @@ create table label
     record_status      int          default 1
 );
 
-create table card_label
+create table if not exists `card_label`
 (
     card_fk            int                                      not null,
     label_fk           int                                      not null,
@@ -50,7 +50,7 @@ create table card_label
         foreign key (label_fk) references label (label_id)
 );
 
-create table role
+create table if not exists `role`
 (
     role_id            int auto_increment
         primary key,
@@ -62,7 +62,7 @@ create table role
     record_status      int          default 1
 );
 
-create table role_authorization
+create table if not exists `role_authorization`
 (
     role_fk            int                                      not null,
     authorization      varchar(64)                              not null,
@@ -76,7 +76,7 @@ create table role_authorization
 
 );
 
-create table user
+create table if not exists `user`
 (
     user_id            int auto_increment
         primary key,
@@ -90,7 +90,7 @@ create table user
     record_status      int          default 1
 );
 
-create table user_role
+create table if not exists `user_role`
 (
     user_fk            int                                      not null,
     role_fk            int                                      not null,

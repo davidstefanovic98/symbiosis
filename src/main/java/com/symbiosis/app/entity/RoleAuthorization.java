@@ -18,9 +18,9 @@ public class RoleAuthorization extends Auditable{
     @EmbeddedId
     private RoleAuthorizationId id;
 
-    @MapsId("roleFk")
+    @MapsId("roleId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_fk", nullable = false)
     @ToString.Exclude
-    private Role roleFk;
+    private Role role;
 }

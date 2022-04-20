@@ -18,7 +18,7 @@ import java.util.Objects;
 public class RoleAuthorizationId implements Serializable {
     private static final long serialVersionUID = -8345070252279973004L;
     @Column(name = "role_fk", nullable = false)
-    private Integer roleFk;
+    private Integer roleId;
 
     @Column(name = "authorization", nullable = false, length = 64)
     private String authorization;
@@ -29,12 +29,12 @@ public class RoleAuthorizationId implements Serializable {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         RoleAuthorizationId entity = (RoleAuthorizationId) o;
         return Objects.equals(this.authorization, entity.authorization) &&
-                Objects.equals(this.roleFk, entity.roleFk);
+                Objects.equals(this.roleId, entity.roleId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorization, roleFk);
+        return Objects.hash(authorization, roleId);
     }
 
 }
