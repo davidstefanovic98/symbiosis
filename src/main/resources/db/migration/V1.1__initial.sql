@@ -16,6 +16,7 @@ create table if not exists `card`
     name               varchar(255)                             not null,
     description        varchar(255)                             null,
     board_fk           int                                      not null,
+
     created_date       timestamp    default current_timestamp() not null,
     last_modified_date timestamp    default current_timestamp() not null,
     last_modified_by   varchar(255) default 'system'            null,
@@ -35,18 +36,35 @@ create table if not exists `label`
     record_status      int          default 1
 );
 
-create table if not exists `card_label`
+
+create table if not exists card_item
 (
+    card_item_id       int auto_increment primary key,
+    header             varchar(255)                             not null,
+    body               varchar(1024)                            not null,
+    description        varchar(512)                             null,
     card_fk            int                                      not null,
+    created_date       timestamp    default current_timestamp() not null,
+    last_modified_date timestamp    default current_timestamp() not null,
+    last_modified_by   varchar(255) default 'system'            null,
+    record_status      int          default 1,
+
+    constraint fk_card_item_card
+        foreign key (card_fk) references card (card_id)
+);
+
+create table if not exists `card_item_label`
+(
+    card_item_fk       int                                      not null,
     label_fk           int                                      not null,
     created_date       timestamp    default current_timestamp() not null,
     last_modified_date timestamp    default current_timestamp() not null,
     last_modified_by   varchar(255) default 'system'            null,
     record_status      int          default 1,
-    primary key(card_fk, label_fk),
-    constraint fk_card_label_card
-        foreign key (card_fk) references card (card_id),
-    constraint fk_card_label_label
+    primary key (card_item_fk, label_fk),
+    constraint fk_card_item_label_card_item
+        foreign key (card_item_fk) references card_item (card_item_id),
+    constraint fk_card_item_label_label
         foreign key (label_fk) references label (label_id)
 );
 
@@ -106,7 +124,8 @@ create table if not exists `user_role`
 );
 
 INSERT IGNORE INTO user (user_id, first_name, last_name, email, password)
-VALUES (1, 'David', 'Stefanovic', 'david.stefanovic0711@gmail.com', '$2a$10$DnsgP/Lr2hC1PIUY5rx5SeaKA5d5UGRBZKMKU7nLACnSr1LW6a/v6');
+VALUES (1, 'David', 'Stefanovic', 'david.stefanovic0711@gmail.com',
+        '$2a$10$DnsgP/Lr2hC1PIUY5rx5SeaKA5d5UGRBZKMKU7nLACnSr1LW6a/v6');
 
 INSERT IGNORE INTO role (role_id, name, description)
 VALUES (1, 'admin', 'Administrator');

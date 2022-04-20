@@ -37,8 +37,4 @@ public class CardController {
         cardService.deleteById(cardId);
     }
 
-    @GetMapping("/label/{cardId}")
-    public ResponseEntity<List<Label>> getAllLabelsByCardId(@PathVariable Integer cardId) {
-        return ResponseEntity.ok(cardService.findAllLabelsByCardId(cardId));
-    }
 }

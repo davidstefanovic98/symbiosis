@@ -1,9 +1,6 @@
 package com.symbiosis.app.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -29,9 +26,9 @@ public class Card extends Auditable{
     @ManyToOne
     @JoinColumn(name="board_fk", referencedColumnName = "board_id")
     private Board board;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="card_label", joinColumns = @JoinColumn(name="card_fk"), inverseJoinColumns = @JoinColumn(name="label_fk"))
-    private List<Label> labels;
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    private List<CardItem> cardItems;
 
     @Override
     public boolean equals(Object o) {

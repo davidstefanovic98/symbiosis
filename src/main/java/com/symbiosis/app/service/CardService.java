@@ -16,6 +16,4 @@ public interface CardService {
     Card update(Card card);
 
     void deleteById(Integer cardId);
-
-    List<Label> findAllLabelsByCardId(Integer cardId);
 }
