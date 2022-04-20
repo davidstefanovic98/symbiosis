@@ -9,7 +9,9 @@ It will help you organize your work and keep track of your tasks.
 The purpose of Symbiosis is to help you organize your work and keep track of your tasks and also to reach new level of productivity.
 It can also help you to achieve your goals faster. If you want for your team to be more efficient and productive, you can use Symbiosis.
 
-#### 3. Development
+######TO BE CONTINUED
+
+#### 3. Development of Symbiosis
 
 #### 4. How does Symbiosis work?
 
