@@ -1,10 +1,11 @@
 package com.symbiosis.app.service.impl;
 
 import com.symbiosis.app.entity.Card;
-import com.symbiosis.app.entity.Label;
 import com.symbiosis.app.repository.CardRepository;
 import com.symbiosis.app.service.CardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,16 +18,14 @@ public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
 
     @Override
-    public List<Card> findAll() {
-        return cardRepository.findAll();
+    public List<Card> findAll(Specification<Card> specification, Sort sort) {
+        return cardRepository.findAll(specification, sort == null ? Sort.unsorted() : sort);
     }
 
     @Override
     public Card findById(Integer cardId) {
         return cardRepository.findById(cardId)
-                .orElseThrow(() -> new NoSuchElementException(
-                        "Card with id " + cardId + " not found")
-                );
+                .orElseThrow(() -> new NoSuchElementException("Card with id " + cardId + " not found"));
     }
 
     @Override

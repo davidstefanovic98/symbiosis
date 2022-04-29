@@ -4,6 +4,8 @@ import com.symbiosis.app.entity.Role;
 import com.symbiosis.app.repository.RoleRepository;
 import com.symbiosis.app.service.RoleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,16 +18,14 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public List<Role> findAll() {
-        return roleRepository.findAll();
+    public List<Role> findAll(Specification<Role> specification, Sort sort) {
+        return roleRepository.findAll(specification, sort == null ? Sort.unsorted() : sort);
     }
 
     @Override
     public Role findById(Integer roleId) {
         return roleRepository.findById(roleId)
-                .orElseThrow(() -> new NoSuchElementException(
-                        "Role with id " + roleId + "not found.")
-                );
+                .orElseThrow(() -> new NoSuchElementException("Role with id " + roleId + "not found."));
     }
 
     @Override

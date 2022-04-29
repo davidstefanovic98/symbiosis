@@ -4,6 +4,8 @@ import com.symbiosis.app.entity.User;
 import com.symbiosis.app.repository.UserRepository;
 import com.symbiosis.app.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,16 +27,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<User> findAll(Specification<User> specification, Sort sort) {
+        return userRepository.findAll(specification, sort == null ? Sort.unsorted() : sort);
     }
 
     @Override
     public User findById(Integer userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException(
-                        "User with id " + userId + "not found.")
-                );
+                .orElseThrow(() -> new NoSuchElementException("User with id " + userId + "not found."));
     }
 
     @Override

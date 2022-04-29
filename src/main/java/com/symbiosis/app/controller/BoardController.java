@@ -3,6 +3,8 @@ package com.symbiosis.app.controller;
 import com.symbiosis.app.entity.Board;
 import com.symbiosis.app.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,22 +18,27 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @GetMapping("/board")
-    public ResponseEntity<List<Board>> getAllBoards() {
-        return ResponseEntity.ok(boardService.findAll());
+    @GetMapping
+    public ResponseEntity<List<Board>> getAllBoards(@RequestParam Specification<Board> specification, @RequestParam Sort sort) {
+        return ResponseEntity.ok(boardService.findAll(specification, sort));
     }
 
-    @PostMapping("/board")
+    @GetMapping("/{boardId}")
+    public ResponseEntity<Board> getBoardById(@PathVariable Integer boardId) {
+        return ResponseEntity.ok(boardService.findById(boardId));
+    }
+
+    @PostMapping
     public ResponseEntity<Board> saveBoard(Board board) {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(boardService.save(board));
     }
 
-    @PutMapping("/board")
+    @PutMapping
     public ResponseEntity<Board> updateBoard(Board board) {
         return ResponseEntity.ok(boardService.update(board));
     }
 
-    @DeleteMapping("/board/{boardId}")
+    @DeleteMapping("/{boardId}")
     public void deleteBoardById(@PathVariable Integer boardId) {
         boardService.deleteById(boardId);
     }

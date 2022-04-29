@@ -1,0 +1,5 @@
+package com.symbiosis.app.entity.domain;
+
+public enum Authorization {
+    USER_CREATE, USER_READ, USER_UPDATE, USER_DELETE , PERMISSION_DELETE, PERMISSION_CREATE, PERMISSION_READ, PERMISSION_UPDATE
+}

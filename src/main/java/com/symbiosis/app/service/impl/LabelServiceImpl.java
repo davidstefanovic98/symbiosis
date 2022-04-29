@@ -4,6 +4,8 @@ import com.symbiosis.app.entity.Label;
 import com.symbiosis.app.repository.LabelRepository;
 import com.symbiosis.app.service.LabelService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,16 +18,14 @@ public class LabelServiceImpl implements LabelService {
     private final LabelRepository labelRepository;
 
     @Override
-    public List<Label> findAll() {
-        return labelRepository.findAll();
+    public List<Label> findAll(Specification<Label> specification, Sort sort) {
+        return labelRepository.findAll(specification, sort == null ? Sort.unsorted() : sort);
     }
 
     @Override
     public Label findById(Integer labelId) {
         return labelRepository.findById(labelId)
-                .orElseThrow(() -> new NoSuchElementException(
-                        "Label with id " + labelId + " not found")
-                );
+                .orElseThrow(() -> new NoSuchElementException("Label with id " + labelId + " not found"));
     }
 
     @Override
