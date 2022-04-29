@@ -19,7 +19,8 @@ public class RoleController {
     private final RoleService roleService;
 
     @GetMapping
-    public ResponseEntity<List<Role>> getAllRoles(@RequestParam Specification<Role> specification, @RequestParam Sort sort) {
+    public ResponseEntity<List<Role>> getAllRoles(@RequestParam(required = false) Specification<Role> specification,
+                                                  @RequestParam(required = false) Sort sort) {
         return ResponseEntity.ok(roleService.findAll(specification, sort));
     }
 

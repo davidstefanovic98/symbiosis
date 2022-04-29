@@ -19,7 +19,8 @@ public class CardController {
     private final CardService cardService;
 
     @GetMapping
-    public ResponseEntity<List<Card>> getAllCards(@RequestParam Specification<Card> specification, @RequestParam(required = false) Sort sort) {
+    public ResponseEntity<List<Card>> getAllCards(@RequestParam(required = false) Specification<Card> specification,
+                                                  @RequestParam(required = false) Sort sort) {
         return ResponseEntity.ok(cardService.findAll(specification, sort));
     }
 

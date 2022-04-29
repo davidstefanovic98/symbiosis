@@ -19,7 +19,7 @@ public class LabelController {
     private final LabelService labelService;
 
     @GetMapping
-    public ResponseEntity<List<Label>> getAllLabels(@RequestParam Specification<Label> specification, @RequestParam Sort sort) {
+    public ResponseEntity<List<Label>> getAllLabels(@RequestParam(required = false) Specification<Label> specification, @RequestParam(required = false) Sort sort) {
         return ResponseEntity.ok(labelService.findAll(specification, sort));
     }
 

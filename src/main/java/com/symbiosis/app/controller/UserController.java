@@ -19,8 +19,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(@RequestParam Specification<User> specification,
-                                                  @RequestParam Sort sort) {
+    public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) Specification<User> specification,
+                                                  @RequestParam(required = false) Sort sort) {
         return ResponseEntity.ok(userService.findAll(specification, sort));
     }
 

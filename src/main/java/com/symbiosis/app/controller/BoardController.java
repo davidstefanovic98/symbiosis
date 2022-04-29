@@ -19,7 +19,8 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping
-    public ResponseEntity<List<Board>> getAllBoards(@RequestParam Specification<Board> specification, @RequestParam Sort sort) {
+    public ResponseEntity<List<Board>> getAllBoards(@RequestParam(required = false) Specification<Board> specification,
+                                                    @RequestParam(required = false) Sort sort) {
         return ResponseEntity.ok(boardService.findAll(specification, sort));
     }
 
