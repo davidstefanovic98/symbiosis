@@ -35,6 +35,8 @@ public class JwtProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList()));
 
+        claims.put("user", subject);
+
         return Jwts
                 .builder()
                 .setSubject(subject)
