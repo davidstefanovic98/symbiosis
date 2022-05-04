@@ -37,7 +37,7 @@ create table if not exists `label`
 );
 
 
-create table if not exists card_item
+create table if not exists `card_item`
 (
     card_item_id       int auto_increment primary key,
     header             varchar(255)                             not null,
@@ -123,12 +123,12 @@ create table if not exists `user_role`
         foreign key (user_fk) references user (user_id)
 );
 
-INSERT IGNORE INTO user (user_id, first_name, last_name, email, password)
-VALUES (1, 'David', 'Stefanovic', 'david.stefanovic0711@gmail.com',
-        '$2a$10$DnsgP/Lr2hC1PIUY5rx5SeaKA5d5UGRBZKMKU7nLACnSr1LW6a/v6');
+INSERT IGNORE INTO `user` (user_id, first_name, last_name, email, password)
+VALUES (1, 'admin', 'admin', 'admin',
+        '$2a$12$5L2IvJyTCF3xVYE74SQjzeM4DrFtp6HzLablVVBBi4tGZaVVgubMa');
 
-INSERT IGNORE INTO role (role_id, name, description)
+INSERT IGNORE INTO `role` (role_id, name, description)
 VALUES (1, 'admin', 'Administrator');
 
-INSERT IGNORE INTO user_role (user_fk, role_fk)
+INSERT IGNORE INTO `user_role` (user_fk, role_fk)
 VALUES (1, 1);
