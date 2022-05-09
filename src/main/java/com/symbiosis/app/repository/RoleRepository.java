@@ -1,10 +1,8 @@
 package com.symbiosis.app.repository;
 
 import com.symbiosis.app.entity.Role;
-import com.symbiosis.app.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.symbiosis.app.repository.generic.JpaSpecificationRepository;
 
-public interface RoleRepository extends JpaRepository<Role, Integer>, JpaSpecificationExecutor<Role> {
+public interface RoleRepository extends JpaSpecificationRepository<Role> {
 
 }

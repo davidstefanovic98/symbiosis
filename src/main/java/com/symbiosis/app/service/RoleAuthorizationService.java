@@ -1,5 +1,8 @@
 package com.symbiosis.app.service;
 
-public interface RoleAuthorizationService {
+import com.symbiosis.app.entity.RoleAuthorization;
+import com.symbiosis.app.service.generic.GenericCrudService;
+
+public interface RoleAuthorizationService extends GenericCrudService<RoleAuthorization> {
 
 }

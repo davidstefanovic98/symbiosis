@@ -2,8 +2,11 @@ package com.symbiosis.app.service.impl;
 
 import com.symbiosis.app.entity.User;
 import com.symbiosis.app.repository.UserRepository;
+import com.symbiosis.app.repository.generic.JpaSpecificationRepository;
 import com.symbiosis.app.service.UserService;
+import com.symbiosis.app.service.generic.impl.GenericCrudServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,40 +18,18 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
-@RequiredArgsConstructor
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl extends GenericCrudServiceImpl<User> implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
+
+    protected UserServiceImpl(UserRepository repository) {
+        super(repository);
+        this.userRepository = repository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found."));
-    }
-
-    @Override
-    public List<User> findAll(Specification<User> specification, Sort sort) {
-        return userRepository.findAll(specification, sort == null ? Sort.unsorted() : sort);
-    }
-
-    @Override
-    public User findById(Integer userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("User with id " + userId + "not found."));
-    }
-
-    @Override
-    public User save(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public User update(User user) {
-        return userRepository.save(user);
-    }
-
-    @Override
-    public void deleteById(Integer userId) {
-        userRepository.deleteById(userId);
     }
 }

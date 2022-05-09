@@ -1,21 +1,8 @@
 package com.symbiosis.app.service;
 
 import com.symbiosis.app.entity.Card;
-import com.symbiosis.app.entity.Label;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
+import com.symbiosis.app.service.generic.GenericCrudService;
 
-import java.util.List;
+public interface CardService extends GenericCrudService<Card> {
 
-public interface CardService {
-
-    List<Card> findAll(Specification<Card> specification, Sort sort);
-
-    Card findById(Integer cardId);
-
-    Card save(Card card);
-
-    Card update(Card card);
-
-    void deleteById(Integer cardId);
 }

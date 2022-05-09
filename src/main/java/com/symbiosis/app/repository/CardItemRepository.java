@@ -1,9 +1,8 @@
 package com.symbiosis.app.repository;
 
 import com.symbiosis.app.entity.CardItem;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.symbiosis.app.repository.generic.JpaSpecificationRepository;
 
-public interface CardItemRepository extends JpaRepository<CardItem, Integer>, JpaSpecificationExecutor<CardItem> {
+public interface CardItemRepository extends JpaSpecificationRepository<CardItem> {
 
 }

@@ -1,9 +1,8 @@
 package com.symbiosis.app.repository;
 
 import com.symbiosis.app.entity.Board;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.symbiosis.app.repository.generic.JpaSpecificationRepository;
 
-public interface BoardRepository extends JpaRepository<Board, Integer>, JpaSpecificationExecutor<Board> {
+public interface BoardRepository extends JpaSpecificationRepository<Board> {
 
 }

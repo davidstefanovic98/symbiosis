@@ -1,12 +1,11 @@
 package com.symbiosis.app.repository;
 
 import com.symbiosis.app.entity.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.symbiosis.app.repository.generic.JpaSpecificationRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
+public interface UserRepository extends JpaSpecificationRepository<User> {
 
    Optional<User> findByEmail(String email);
 
